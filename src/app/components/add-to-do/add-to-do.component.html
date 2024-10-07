@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>ADD TO-DO</h2>
+
+<mat-dialog-content>
+    <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label class="label">Title</mat-label>
+        <input matInput [(ngModel)]="newTodo.title">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label class="label">Description</mat-label>
+        <textarea matInput [(ngModel)]="newTodo.description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label class="label">Category</mat-label>
+        <mat-select [(ngModel)]="newTodo.category">
+            <mat-option *ngFor="let category of ['PERSONAL', 'WORK']" [value]="category">
+                {{ category }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label class="label">Priority</mat-label>
+        <mat-select [(ngModel)]="newTodo.priority">
+            <mat-option *ngFor="let priority of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" [value]="priority">
+                {{ priority }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button color="warn" mat-dialog-close>
+        Cancel
+    </button>
+    <button mat-button color="primary" (click)="handleAdd()">
+        Add To-Do
+    </button>
+</mat-dialog-actions>

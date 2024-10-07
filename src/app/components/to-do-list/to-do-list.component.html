@@ -1,0 +1,55 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{ currentDate | date:'mediumDate' }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content >
+        <mat-list>
+            <div mat-subheader style="width: 100%; display: flex; align-items: center; justify-content: space-between; font-weight: bold">
+                To Dos
+                <button mat-icon-button (click)="openAddTodoDialog()">
+                    <mat-icon>add_task</mat-icon>
+                </button>
+            </div>
+
+            <mat-list-item *ngFor="let todo of todos">
+                <mat-icon matListItemIcon *ngIf="todo.priority <= 3" color="warn" [matTooltip]="'Priority: ' + todo.priority">priority_high</mat-icon>
+                <mat-icon matListItemIcon *ngIf="todo.priority > 3 && todo.priority <= 6" color="accent" [matTooltip]="'Priority: ' + todo.priority">priority</mat-icon>
+                <mat-icon matListItemIcon *ngIf="todo.priority > 6" color="primary" [matTooltip]="'Priority: ' + todo.priority">low_priority</mat-icon>
+                <span matListItemTitle>{{todo.title}}</span>
+                <span matListItemLine>{{todo.category}}</span>
+                <span>{{todo.description}}</span>
+
+            </mat-list-item>
+        </mat-list>
+        <mat-divider></mat-divider>
+        <mat-list>
+
+            <div mat-subheader style="width: 100%; display: flex; align-items: center; justify-content: space-between; font-weight: bold">
+                Appointments
+                <button mat-icon-button (click)="openAddAppointmentDialog()">
+                    <mat-icon>post_add</mat-icon>
+                </button>
+            </div>
+            <mat-list-item *ngFor="let appointment of appointments">
+                <mat-icon matListItemIcon color="primary">event</mat-icon>
+                <div matListItemTitle>{{appointment.title}} :: {{appointment.startTime}} - {{appointment.endTime}}</div>
+                <div matListItemLine>{{appointment.description}}</div>
+            </mat-list-item>
+        </mat-list>
+
+        <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label class="label">Notes for the day</mat-label>
+            <textarea matInput [(ngModel)]="note"></textarea>
+        </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+        <button mat-icon-button color="warn" (click)="handleReset()">
+            <mat-icon>history</mat-icon>
+        </button>
+        <button mat-icon-button (click)="handleSave()" [disabled]="!todos.length || !appointments.length">
+            <mat-icon>save</mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>

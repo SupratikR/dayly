@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>ADD APPOINTMENT</h2>
+
+<mat-dialog-content>
+    <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label class="label">Title</mat-label>
+        <input matInput [(ngModel)]="newAppointment.title">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label class="label">Description</mat-label>
+        <textarea matInput [(ngModel)]="newAppointment.description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label class="label">Start Time</mat-label>
+        <input matInput [(ngModel)]="newAppointment.startTime">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label class="label">End Time</mat-label>
+        <input matInput [(ngModel)]="newAppointment.endTime">
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button color="warn" mat-dialog-close>
+        Cancel
+    </button>
+    <button mat-button color="primary" (click)="handleAdd()">
+        Add Appointment
+    </button>
+</mat-dialog-actions>
